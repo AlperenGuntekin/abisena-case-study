@@ -1,90 +1,79 @@
 :root {
-  --bg: #f5f6f8;
-  --bg-card: #ffffff;
-  --bg-elevated: #ffffff;
-  --border: #e2e5ea;
-  --border-strong: #cbd0d8;
-  --text: #4a525e;
-  --text-strong: #0f1623;
-  --text-muted: #7b8492;
+  /* parchment palette */
+  --bg: #ebe2cf;
+  --bg-paper: #f6efde;
+  --bg-card: #fbf6e8;
+  --bg-elevated: #fffaec;
 
-  --brand: #e11d2e;
-  --brand-strong: #b8131f;
-  --brand-soft: rgba(225, 29, 46, 0.08);
+  --rule: #2a2620;
+  --rule-soft: #cbbf9f;
+  --rule-faint: rgba(42, 38, 32, 0.14);
 
-  --accent: #2563eb;
-  --accent-soft: rgba(37, 99, 235, 0.1);
+  --ink: #1a1612;
+  --ink-soft: #4a4238;
+  --ink-muted: #807760;
+  --ink-faint: #a89e80;
 
-  --warn: #b45309;
-  --warn-soft: rgba(180, 83, 9, 0.12);
+  /* medical stamp red (Pantanate brand → vermilion stamp) */
+  --stamp: #b8131f;
+  --stamp-deep: #8e0d18;
+  --stamp-soft: rgba(184, 19, 31, 0.12);
+  --stamp-wash: rgba(184, 19, 31, 0.06);
 
-  --success: #047857;
-  --success-soft: rgba(4, 120, 87, 0.12);
+  /* status tones — muted, archival */
+  --tone-waiting: #8a6a14;
+  --tone-waiting-bg: rgba(196, 154, 41, 0.16);
+  --tone-exam: #1f4d8a;
+  --tone-exam-bg: rgba(31, 77, 138, 0.14);
+  --tone-done: #2e6b3b;
+  --tone-done-bg: rgba(46, 107, 59, 0.14);
+  --tone-cancelled: #6b6357;
+  --tone-cancelled-bg: rgba(107, 99, 87, 0.16);
 
-  --danger: #b91c1c;
-  --danger-soft: rgba(185, 28, 28, 0.12);
+  --radius: 2px;
+  --radius-sm: 2px;
+  --radius-lg: 3px;
 
-  --gray: #6b7280;
-  --gray-soft: rgba(107, 114, 128, 0.12);
+  --serif: "Lora", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --mono: "Courier Prime", "Courier New", ui-monospace, Menlo, monospace;
 
-  --shadow-sm: 0 1px 2px rgba(15, 22, 35, 0.06);
-  --shadow-md: 0 8px 24px rgba(15, 22, 35, 0.08);
-  --shadow-lg: 0 24px 60px rgba(15, 22, 35, 0.18);
+  /* form ruling — horizontal lines like a real patient file */
+  --ruling: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    var(--rule-faint) 27px,
+    var(--rule-faint) 28px
+  );
 
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-lg: 18px;
-
-  --sans:
-    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", sans-serif;
+  /* parchment grain */
+  --grain:
+    radial-gradient(
+      900px 600px at 12% 6%,
+      rgba(120, 95, 50, 0.05),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 500px at 92% 88%,
+      rgba(120, 95, 50, 0.06),
+      transparent 65%
+    );
 
   color-scheme: light;
-  font-family: var(--sans);
+  font-family: var(--serif);
   font-size: 15px;
-  line-height: 1.5;
-  color: var(--text);
+  line-height: 1.55;
+  color: var(--ink-soft);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1421;
-    --bg-card: #161c2c;
-    --bg-elevated: #1c2336;
-    --border: #283149;
-    --border-strong: #3a466a;
-    --text: #b5becb;
-    --text-strong: #f4f6fb;
-    --text-muted: #8693a8;
-
-    --brand: #f04050;
-    --brand-strong: #f25a68;
-    --brand-soft: rgba(240, 64, 80, 0.18);
-
-    --accent: #6094ff;
-    --accent-soft: rgba(96, 148, 255, 0.18);
-
-    --warn: #f59e0b;
-    --warn-soft: rgba(245, 158, 11, 0.16);
-
-    --success: #34d399;
-    --success-soft: rgba(52, 211, 153, 0.16);
-
-    --danger: #f87171;
-    --danger-soft: rgba(248, 113, 113, 0.18);
-
-    --gray: #94a3b8;
-    --gray-soft: rgba(148, 163, 184, 0.16);
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
-  }
-}
+/* parchment palette is intentionally single-mode — a dark "medical file"
+   would fight the paper metaphor. We keep the design coherent across
+   prefers-color-scheme. */
 
 * {
   box-sizing: border-box;
@@ -94,12 +83,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(
-      1200px 600px at 100% -10%,
-      var(--brand-soft),
-      transparent 60%
-    ),
+    var(--grain),
     var(--bg);
+  background-attachment: fixed;
 }
 
 #root {
@@ -110,10 +96,11 @@ h1,
 h2,
 h3,
 h4 {
-  color: var(--text-strong);
+  color: var(--ink);
   margin: 0;
+  font-family: var(--serif);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
 }
 
 p {
@@ -121,102 +108,150 @@ p {
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--serif);
 }
 
 input,
 select,
 textarea {
-  font-family: inherit;
+  font-family: var(--serif);
   font-size: 15px;
-  color: var(--text-strong);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule-soft);
+  border-radius: 0;
+  padding: 8px 2px 6px;
   width: 100%;
   outline: none;
-  transition: border-color 120ms ease, box-shadow 120ms ease;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-faint);
+  font-style: italic;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--brand);
-  box-shadow: 0 0 0 3px var(--brand-soft);
+  border-bottom-color: var(--stamp);
+  background: var(--stamp-wash);
 }
 
 input[aria-invalid="true"] {
-  border-color: var(--danger);
-  box-shadow: 0 0 0 3px var(--danger-soft);
+  border-bottom-color: var(--stamp);
+  background: var(--stamp-soft);
+}
+
+select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-muted) 50%),
+    linear-gradient(135deg, var(--ink-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 12px) calc(50% - 2px),
+    calc(100% - 8px) calc(50% - 2px);
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+  padding-right: 22px;
 }
 
 textarea {
   resize: vertical;
-  min-height: 64px;
+  min-height: 56px;
+  border: 1px dashed var(--rule-soft);
+  padding: 8px 10px;
 }
 
-/* shared button base */
+input[type="date"] {
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+input[type="range"] {
+  border: none;
+  padding: 0;
+  accent-color: var(--stamp);
+}
+
+/* ---------- buttons — embossed metal plate / ink stamp ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 10px 16px;
-  font-size: 14px;
+  gap: 8px;
+  border: 1px solid var(--rule);
+  background: var(--bg-elevated);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-family: var(--serif);
+  font-size: 13px;
   font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition:
-    background 120ms ease,
-    border-color 120ms ease,
-    color 120ms ease,
-    transform 80ms ease;
-  white-space: nowrap;
+  transition: background 120ms ease, color 120ms ease, transform 80ms ease;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: var(--bg-paper);
+  border-color: var(--ink);
 }
 
 .btn:active {
-  transform: translateY(1px);
+  background: var(--bg);
 }
 
 .btn--primary {
-  background: var(--brand);
-  color: #fff;
-  border-color: var(--brand);
+  background: var(--stamp);
+  color: #fdf6e3;
+  border-color: var(--stamp-deep);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .btn--primary:hover {
-  background: var(--brand-strong);
-  border-color: var(--brand-strong);
+  background: var(--stamp-deep);
+  color: #fdf6e3;
+  border-color: var(--stamp-deep);
 }
 
 .btn--ghost {
   background: transparent;
-  color: var(--text-strong);
-  border-color: var(--border-strong);
+  color: var(--ink);
+  border-color: var(--rule-soft);
 }
 
 .btn--ghost:hover {
-  background: var(--gray-soft);
+  background: var(--bg-paper);
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
 .btn--danger {
-  background: var(--danger);
-  color: #fff;
-  border-color: var(--danger);
+  background: var(--stamp);
+  color: #fdf6e3;
+  border-color: var(--stamp-deep);
 }
 
 .btn--danger:hover {
-  background: #991b1b;
-  border-color: #991b1b;
+  background: var(--stamp-deep);
+  border-color: var(--stamp-deep);
 }
 
 .btn--danger-ghost {
   background: transparent;
-  color: var(--danger);
-  border-color: transparent;
+  color: var(--stamp);
+  border-color: var(--rule-soft);
 }
 
 .btn--danger-ghost:hover {
-  background: var(--danger-soft);
+  background: var(--stamp-soft);
+  border-color: var(--stamp);
+  color: var(--stamp);
+}
+
+::selection {
+  background: var(--stamp-soft);
+  color: var(--ink);
 }

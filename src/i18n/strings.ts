@@ -67,6 +67,10 @@ export interface Strings {
   yes: string;
   no: string;
   tagsHelp: string;
+
+  dossierLabel: string;
+  fileNo: string;
+  registeredOn: (date: string) => string;
 }
 
 const tr: Strings = {
@@ -144,6 +148,10 @@ const tr: Strings = {
   yes: "Evet",
   no: "Hayır",
   tagsHelp: "Virgülle ayırarak yazın (örn. kronik, alerji)",
+
+  dossierLabel: "Hasta Dosyası",
+  fileNo: "Dosya No",
+  registeredOn: (date) => `Kayıt tarihi · ${date}`,
 };
 
 const en: Strings = {
@@ -221,6 +229,10 @@ const en: Strings = {
   yes: "Yes",
   no: "No",
   tagsHelp: "Comma-separated (e.g. chronic, allergy)",
+
+  dossierLabel: "Patient File",
+  fileNo: "File No",
+  registeredOn: (date) => `Registered · ${date}`,
 };
 
 export const STRINGS: Record<Lang, Strings> = { tr, en };

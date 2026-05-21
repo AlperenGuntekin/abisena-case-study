@@ -30,6 +30,12 @@ export function PatientCard({ patient, onEdit, onDelete }: PatientCardProps) {
 
   return (
     <article className="card">
+      <div className="card__strip">
+        <span className="card__record-no">
+          {t.fileNo} · {patient.id.toUpperCase()}
+        </span>
+      </div>
+
       <header className="card__header">
         <div className="card__identity">
           <h3 className="card__name">{patient.fullName}</h3>
@@ -40,12 +46,16 @@ export function PatientCard({ patient, onEdit, onDelete }: PatientCardProps) {
               {formatDate(patient.birthDate, lang)}
               {age !== null ? ` (${age})` : ""}
             </span>
-            <span aria-hidden>·</span>
-            <span>{patient.bloodType}</span>
           </p>
         </div>
 
         <div className="card__status-group">
+          <div
+            className="card__blood"
+            aria-label={`${t.fields.bloodType} ${patient.bloodType}`}
+          >
+            {patient.bloodType}
+          </div>
           <span className={statusClass(patient.status)}>
             {t.statusLabels[patient.status]}
           </span>
@@ -60,7 +70,7 @@ export function PatientCard({ patient, onEdit, onDelete }: PatientCardProps) {
       <div className="card__body">
         <div className="card__field">
           <p className="card__label">{t.fields.appointmentDate}</p>
-          <p className="card__value">
+          <p className="card__value card__value--mono">
             {formatDate(patient.appointmentDate, lang)}
           </p>
         </div>
@@ -101,20 +111,25 @@ export function PatientCard({ patient, onEdit, onDelete }: PatientCardProps) {
       </div>
 
       <div className="card__actions">
-        <button
-          type="button"
-          className="btn btn--ghost"
-          onClick={() => onEdit(patient)}
-        >
-          {t.edit}
-        </button>
-        <button
-          type="button"
-          className="btn btn--danger-ghost"
-          onClick={() => onDelete(patient)}
-        >
-          {t.delete}
-        </button>
+        <span className="card__signoff">
+          {t.registeredOn(formatDate(patient.createdAt, lang))}
+        </span>
+        <div className="card__action-group">
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => onEdit(patient)}
+          >
+            {t.edit}
+          </button>
+          <button
+            type="button"
+            className="btn btn--danger-ghost"
+            onClick={() => onDelete(patient)}
+          >
+            {t.delete}
+          </button>
+        </div>
       </div>
     </article>
   );
