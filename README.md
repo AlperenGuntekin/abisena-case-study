@@ -1,7 +1,7 @@
 # Abisena / Panates — Hasta Takip Sistemi
 
 **Teknik Case Study** • Poliklinik Hasta Randevu ve Takip Paneli
-**Stack:** React 18 + TypeScript + Vite (Next.js kullanılmadı)
+**Stack:** React 18 + TypeScript + Vite
 
 PDF dokümantasyonunda tanımlanan tüm gereksinimleri karşılayan bir tek sayfalık (SPA) hasta takip uygulaması.
 
@@ -58,7 +58,7 @@ src/
 
 ### Tasarım kararları
 
-- **Local CRUD:** API yalnızca okuma için kullanılır; PDF gereksinimi gereği yazma işlemleri local state üzerinde tutulur. Sayfa yenilendiğinde local değişiklikler sıfırlanır — gerçek bir sistemde POST/PUT/DELETE noktaları aynı `usePatients` hook'una drop-in olarak eklenebilir.
+- **Local CRUD:** API yalnızca okuma için kullanılır; PDF gereksinimi gereği yazma işlemleri local state üzerinde tutulur. Sayfa yenilendiğinde local değişiklikler sıfırlanır gerçek bir sistemde POST/PUT/DELETE noktaları aynı `usePatients` hook'una drop-in olarak eklenebilir.
 - **Çift dil notlar/tanılar:** Veri modelinde zaten TR ve EN versiyonları bulunduğundan, kart görünümleri aktif dile göre doğru alanı seçer; arama her iki dildeki tanılarda da çalışır.
 - **Form Validasyonu:** `fullName`, `diagnosis_tr`, `diagnosis_en` zorunlu — yerelleştirilmiş hata mesajları.
 - **Erişilebilirlik:** Modal `role="dialog"` + `aria-modal`, ESC ile kapanma, focus trap girişi; tüm form alanlarında `aria-label` veya görünen label.
